@@ -1,26 +1,53 @@
-[gd_scene load_steps=8 format=3 uid="uid://c50saja4yap0w"]
+[gd_scene load_steps=13 format=3 uid="uid://c50saja4yap0w"]
 
 [ext_resource type="Script" path="res://scripts/main_scene.gd" id="1_5oejp"]
 [ext_resource type="Texture2D" uid="uid://dy7ubts3wma1p" path="res://sprites/shelf.svg" id="1_6atf7"]
 [ext_resource type="Script" path="res://scripts/meditation_menu.gd" id="1_8s6u5"]
 [ext_resource type="Texture2D" uid="uid://b3coic1swxplg" path="res://sprites/panel_button.svg" id="1_njh2d"]
 [ext_resource type="Texture2D" uid="uid://b4qc0rydjmtn5" path="res://sprites/silent.svg" id="2_3n5om"]
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="4_8owsi"]
+[ext_resource type="Texture2D" uid="uid://eq0qyc83koaj" path="res://sprites/back_button.svg" id="4_aifvn"]
 [ext_resource type="Script" path="res://scripts/subject_button.gd" id="4_u4kv6"]
+[ext_resource type="Texture2D" uid="uid://jfudr55s8ms" path="res://sprites/back_button_pressed.svg" id="5_j3bww"]
+[ext_resource type="Script" path="res://scripts/back_button.gd" id="5_x7m7k"]
 [ext_resource type="Texture2D" uid="uid://bw4rheleiiqmo" path="res://sprites/panel_pressed.svg" id="6_iigh6"]
+
+[sub_resource type="Curve" id="Curve_wefxq"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.318328, 1), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [node name="main_scene" type="Node2D"]
 script = ExtResource("1_5oejp")
 
 [node name="meditation_menu" type="Node2D" parent="."]
+z_index = 100
 position = Vector2(0, 2400)
 script = ExtResource("1_8s6u5")
+move_curve = SubResource("Curve_wefxq")
 
-[node name="TextureRect" type="TextureRect" parent="meditation_menu"]
+[node name="blackout" type="ColorRect" parent="meditation_menu"]
+offset_left = -1164.0
+offset_top = -2769.0
+offset_right = 2221.0
+offset_bottom = 2961.0
+color = Color(0, 0, 0, 0)
+
+[node name="background" type="TextureRect" parent="meditation_menu"]
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("1_6atf7")
 
+[node name="back_button" type="TextureButton" parent="meditation_menu"]
+offset_left = 60.0
+offset_top = 60.0
+offset_right = 260.0
+offset_bottom = 260.0
+texture_normal = ExtResource("4_aifvn")
+texture_pressed = ExtResource("5_j3bww")
+script = ExtResource("5_x7m7k")
+
 [node name="main_menu" type="Node2D" parent="."]
+script = ExtResource("4_8owsi")
 
 [node name="top" type="Node2D" parent="main_menu"]
 
