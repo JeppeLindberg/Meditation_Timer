@@ -26,10 +26,10 @@ script = ExtResource("1_8s6u5")
 move_curve = SubResource("Curve_wefxq")
 
 [node name="blackout" type="ColorRect" parent="meditation_menu"]
-offset_left = -1164.0
-offset_top = -2769.0
-offset_right = 2221.0
-offset_bottom = 2961.0
+offset_left = -1255.0
+offset_top = -3374.0
+offset_right = 2130.0
+offset_bottom = 2356.0
 color = Color(0, 0, 0, 0)
 
 [node name="background" type="TextureRect" parent="meditation_menu"]
