@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c50saja4yap0w"]
+[gd_scene load_steps=14 format=3 uid="uid://c50saja4yap0w"]
 
 [ext_resource type="Script" path="res://scripts/main_scene.gd" id="1_5oejp"]
 [ext_resource type="Texture2D" uid="uid://dy7ubts3wma1p" path="res://sprites/shelf.svg" id="1_6atf7"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://jfudr55s8ms" path="res://sprites/back_button_pressed.svg" id="5_j3bww"]
 [ext_resource type="Script" path="res://scripts/back_button.gd" id="5_x7m7k"]
 [ext_resource type="Texture2D" uid="uid://bw4rheleiiqmo" path="res://sprites/panel_pressed.svg" id="6_iigh6"]
+[ext_resource type="Script" path="res://scripts/screen_size.gd" id="12_q4nh6"]
 
 [sub_resource type="Curve" id="Curve_wefxq"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.318328, 1), 0.0, 0.0, 0, 0]
@@ -113,8 +114,15 @@ offset_right = 776.0
 offset_bottom = 296.0
 texture = ExtResource("2_3n5om")
 
-[node name="under_top_panel_anchor" type="Node2D" parent="."]
-position = Vector2(0, 80)
+[node name="screen_size" type="Node2D" parent="."]
+process_priority = -1
+z_index = 1000
+script = ExtResource("12_q4nh6")
 
-[node name="bottom_anchor" type="Node2D" parent="."]
-position = Vector2(0, 2400)
+[node name="debug_label" type="Label" parent="screen_size"]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "BLA
+BLA"

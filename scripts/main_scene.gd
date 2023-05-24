@@ -5,7 +5,6 @@ var _cursor_pos = Vector2.ZERO
 
 func _ready():
 	_start_node(self)
-	get_node("under_top_panel_anchor")
 	
 func _start_node(node):
 	if node.has_method("start"):
