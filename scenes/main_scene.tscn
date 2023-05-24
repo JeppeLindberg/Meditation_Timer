@@ -56,7 +56,7 @@ offset_right = 1080.0
 offset_bottom = 2400.0
 
 [node name="center" type="Node2D" parent="main_menu"]
-position = Vector2(540, 1200)
+position = Vector2(540, 960)
 
 [node name="center" type="CenterContainer" parent="main_menu/center"]
 anchors_preset = 8
