@@ -3,6 +3,8 @@ extends Node2D
 var top_left = Vector2.ZERO
 var bottom_left = Vector2.ZERO
 var center = Vector2.ZERO
+var center_off_top = Vector2.ZERO
+var center_off_bottom = Vector2.ZERO
 var screen_size
 
 var _debug_label: Label
@@ -18,5 +20,7 @@ func _process(_delta):
 
 	top_left = Vector2(0, 0)
 	bottom_left = Vector2(0, screen_size.y)
-	center = Vector2(screen_size.x / 2, screen_size.y / 2)
+	center = Vector2(screen_size.x * 0.5, screen_size.y * 0.5)
+	center_off_top = Vector2(screen_size.x * 0.5, screen_size.y * 0.25)
+	center_off_bottom = Vector2(screen_size.x * 0.5, screen_size.y * 0.75)
 
