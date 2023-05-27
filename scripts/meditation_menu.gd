@@ -15,8 +15,11 @@ var _half_shade
 var _full_shade
 var _half_shade_pivot
 var _full_shade_pivot
+var _current_time
+var _full_time
 
 var active = false
+var playing = false
 var _activated_at = -1.0
 
 
@@ -30,6 +33,8 @@ func start():
 	_full_shade = get_node("background/full_shade")
 	_half_shade_pivot = get_node("background/half_shade/pivot")
 	_full_shade_pivot = get_node("background/full_shade/pivot")
+	_current_time = get_node("center/center/container/timer/current_time")
+	_full_time = get_node("center/center/container/timer/full_time")
 
 func _process(_delta):
 	var weight = move_curve.sample(_main_scene.seconds() - _activated_at)
@@ -59,5 +64,13 @@ func move_to_main_menu():
 	if active:
 		deactivate_menu()
 		_main_menu.activate_menu()
+
+func play():
+	playing = true
+
+func pause():
+	playing = false
+
+
 
 
