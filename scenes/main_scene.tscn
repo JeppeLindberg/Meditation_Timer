@@ -235,6 +235,7 @@ z_index = 1000
 script = ExtResource("12_q4nh6")
 
 [node name="debug_label" type="Label" parent="screen_size"]
+visible = false
 offset_right = 40.0
 offset_bottom = 23.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
