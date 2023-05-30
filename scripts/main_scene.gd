@@ -33,4 +33,10 @@ func is_hovering(node):
 	
 	return false
 
+func create_node(prefab_path, parent):
+	var scene = load(prefab_path)
+	var new_node = scene.instantiate()
+	parent.add_child(new_node)
+	return new_node
+
 

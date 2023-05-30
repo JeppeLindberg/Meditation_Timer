@@ -18,11 +18,11 @@ func start():
 	_meditation_menu = get_node(_scene_paths.MEDITATION_MENU)
 
 func _process(_delta):	
-	if _meditation_menu.playing == false:
+	if _meditation_menu.is_playing() == false:
 		self.texture_normal = unpressed_play_texture
 		self.texture_pressed = pressed_play_texture
 
-	elif _meditation_menu.playing == true:
+	elif _meditation_menu.is_playing() == true:
 		self.texture_normal = unpressed_pause_texture
 		self.texture_pressed = pressed_pause_texture
 		
@@ -35,7 +35,7 @@ func _process(_delta):
 
 func _button_pressed():
 	if _meditation_menu.active:
-		if _meditation_menu.playing == false:
+		if _meditation_menu.is_playing() == false:
 			_meditation_menu.play()
-		elif _meditation_menu.playing == true:
+		elif _meditation_menu.is_playing() == true:
 			_meditation_menu.pause()
