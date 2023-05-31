@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dh0dt8b5o2yg1"]
+[gd_scene load_steps=26 format=3 uid="uid://dh0dt8b5o2yg1"]
 
 [ext_resource type="Script" path="res://scripts/main_scene.gd" id="1_5oejp"]
 [ext_resource type="Texture2D" uid="uid://dy7ubts3wma1p" path="res://sprites/shelf.svg" id="1_6atf7"]
@@ -19,6 +19,11 @@
 [ext_resource type="Texture2D" uid="uid://bvhk36dlcbuo6" path="res://sprites/pause_button.svg" id="12_mfhxx"]
 [ext_resource type="Script" path="res://scripts/screen_size.gd" id="12_q4nh6"]
 [ext_resource type="Texture2D" uid="uid://yewwnbvokvsc" path="res://sprites/pause_button_pressed.svg" id="13_m41mq"]
+[ext_resource type="Texture2D" uid="uid://bbyij7swcrbgs" path="res://sprites/stop_button.svg" id="14_dx7pl"]
+[ext_resource type="Texture2D" uid="uid://dmoq3de8326mb" path="res://sprites/stop_button_pressed.svg" id="15_6y0nh"]
+[ext_resource type="Script" path="res://scripts/extra_button.gd" id="16_txljw"]
+[ext_resource type="Texture2D" uid="uid://c56xcpm1a8ru0" path="res://sprites/meditation_settings.svg" id="17_3gyys"]
+[ext_resource type="Texture2D" uid="uid://b4m2g52ve87mc" path="res://sprites/meditation_settings_pressed.svg" id="18_c0qx3"]
 
 [sub_resource type="Curve" id="Curve_wefxq"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.318328, 1), 0.0, 0.0, 0, 0]
@@ -120,6 +125,10 @@ grow_vertical = 2
 [node name="container" type="VBoxContainer" parent="meditation_menu/center/center"]
 layout_mode = 2
 
+[node name="filler" type="Control" parent="meditation_menu/center/center/container"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
 [node name="play_button" type="TextureButton" parent="meditation_menu/center/center/container"]
 layout_mode = 2
 texture_normal = ExtResource("7_vidsj")
@@ -131,13 +140,13 @@ unpressed_pause_texture = ExtResource("12_mfhxx")
 pressed_pause_texture = ExtResource("13_m41mq")
 
 [node name="timer" type="Control" parent="meditation_menu/center/center/container"]
-custom_minimum_size = Vector2(0, 150)
+custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 
 [node name="current_time" type="Label" parent="meditation_menu/center/center/container/timer"]
 layout_mode = 2
 offset_right = 203.0
-offset_bottom = 150.0
+offset_bottom = 180.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 50
 text = "BLA"
@@ -147,7 +156,7 @@ vertical_alignment = 2
 [node name="of" type="Label" parent="meditation_menu/center/center/container/timer"]
 layout_mode = 2
 offset_right = 450.0
-offset_bottom = 150.0
+offset_bottom = 180.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 50
 text = "/"
@@ -158,11 +167,24 @@ vertical_alignment = 2
 layout_mode = 2
 offset_left = 245.0
 offset_right = 448.0
-offset_bottom = 150.0
+offset_bottom = 180.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 50
 text = "BLA"
 vertical_alignment = 2
+
+[node name="extra_container" type="CenterContainer" parent="meditation_menu/center/center/container"]
+layout_mode = 2
+
+[node name="extra_button" type="TextureButton" parent="meditation_menu/center/center/container/extra_container"]
+layout_mode = 2
+texture_normal = ExtResource("14_dx7pl")
+texture_pressed = ExtResource("15_6y0nh")
+script = ExtResource("16_txljw")
+stop_normal = ExtResource("14_dx7pl")
+stop_pressed = ExtResource("15_6y0nh")
+settings_normal = ExtResource("17_3gyys")
+settings_pressed = ExtResource("18_c0qx3")
 
 [node name="main_menu" type="Node2D" parent="."]
 script = ExtResource("4_8owsi")

@@ -11,7 +11,7 @@ var _sound_path = "res://audio_prefabs/%1.tscn"
 
 @onready var _main_scene = get_node(_scene_paths.MAIN_SCENE)
 
-@export var duration = 0.2 # In minutes
+@export var duration = 2.0 # In minutes
 var time_elapsed = 0.0
 var playing = false
 

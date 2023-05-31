@@ -13,6 +13,7 @@ var _audio
 var _current_meditation
 var _screen_size
 var _blackout
+var _extra_button
 var _center
 var _half_shade
 var _full_shade
@@ -38,6 +39,7 @@ func start():
 	_full_shade_pivot = get_node("background/full_shade/pivot")
 	_current_time = get_node("center/center/container/timer/current_time")
 	_full_time = get_node("center/center/container/timer/full_time")
+	_extra_button = get_node("center/center/container/extra_container/extra_button")
 
 func _process(_delta):
 	var secs_since_activation = _main_scene.seconds() - _activated_at
@@ -67,6 +69,11 @@ func _process_visual(weight):
 		var secs = _to_secs(_current_meditation.time_elapsed)
 		_current_time.text = mins + ":" + secs
 
+	if time_elapsed() > 0.0:
+		_extra_button.stop_texture()
+	else:
+		_extra_button.settings_texture()
+
 	global_position = lerp(_screen_size.bottom_left, _screen_size.top_left, weight)
 	_blackout.color = Color(0, 0, 0, weight)		
 	_center.position = _screen_size.center
@@ -95,6 +102,11 @@ func is_playing():
 	if _current_meditation == null:
 		return false
 	return _current_meditation.playing
+
+func time_elapsed():
+	if _current_meditation == null:
+		return 0.0
+	return _current_meditation.time_elapsed
 
 func play():
 	_current_meditation.play()
