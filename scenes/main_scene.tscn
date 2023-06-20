@@ -35,6 +35,30 @@ script = ExtResource("1_5oejp")
 [node name="audio" type="AudioListener2D" parent="."]
 current = true
 
+[node name="meditation_settings" type="Node2D" parent="."]
+z_index = 200
+position = Vector2(0, 4821)
+
+[node name="blackout" type="ColorRect" parent="meditation_settings"]
+offset_left = -1255.0
+offset_top = -3925.0
+offset_right = 2130.0
+offset_bottom = 2608.0
+color = Color(0, 0, 0, 0)
+
+[node name="background" type="TextureRect" parent="meditation_settings"]
+clip_children = 1
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_6atf7")
+
+[node name="color" type="ColorRect" parent="meditation_settings/background"]
+layout_mode = 0
+offset_left = -119.0
+offset_top = -40.0
+offset_right = 1222.0
+offset_bottom = 2490.0
+
 [node name="meditation_menu" type="Node2D" parent="."]
 z_index = 100
 position = Vector2(0, 2400)

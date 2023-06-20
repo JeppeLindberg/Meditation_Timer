@@ -64,10 +64,12 @@ func _format_number(num):
 
 func _process_visual(weight):
 	if _current_meditation != null:
-		_full_time.text = "10:00"
-		var mins = _to_mins(_current_meditation.time_elapsed)
-		var secs = _to_secs(_current_meditation.time_elapsed)
-		_current_time.text = mins + ":" + secs
+		var full_mins = _to_mins(_current_meditation.duration_mins * 60)
+		var full_secs = _to_secs(_current_meditation.duration_mins * 60)
+		_full_time.text = full_mins + ":" + full_secs
+		var elapsed_mins = _to_mins(_current_meditation.time_elapsed)
+		var elapsed_secs = _to_secs(_current_meditation.time_elapsed)
+		_current_time.text = elapsed_mins + ":" + elapsed_secs
 
 	if time_elapsed() > 0.0:
 		_extra_button.stop_texture()
@@ -113,6 +115,9 @@ func play():
 
 func pause():
 	_current_meditation.pause()
+
+func stop():
+	_current_meditation.stop()
 
 
 
