@@ -39,4 +39,19 @@ func create_node(prefab_path, parent):
 	parent.add_child(new_node)
 	return new_node
 
+func _format_number(num):
+	var ret = str(num)
+	while len(ret) < 2:
+		ret = "0" + ret
+	return ret
 
+func _to_mins(secs):
+	return _format_number(int(secs / 60))
+
+func _to_secs(secs):
+	return _format_number(int(secs) % 60)
+
+func to_time_str(secs):
+	var full_mins = _to_mins(secs)
+	var full_secs = _to_secs(secs)
+	return full_mins + ":" + full_secs

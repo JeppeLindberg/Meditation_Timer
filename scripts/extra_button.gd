@@ -40,4 +40,6 @@ func _process(_delta):
 func _button_pressed():
 	if _button_mode == "stop":
 		_meditation_menu.stop()
+	if _button_mode == "settings":
+		_meditation_menu.open_settings()
 

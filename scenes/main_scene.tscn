@@ -1,10 +1,12 @@
-[gd_scene load_steps=26 format=3 uid="uid://dh0dt8b5o2yg1"]
+[gd_scene load_steps=28 format=3 uid="uid://dh0dt8b5o2yg1"]
 
 [ext_resource type="Script" path="res://scripts/main_scene.gd" id="1_5oejp"]
 [ext_resource type="Texture2D" uid="uid://dy7ubts3wma1p" path="res://sprites/shelf.svg" id="1_6atf7"]
 [ext_resource type="Script" path="res://scripts/meditation_menu.gd" id="1_8s6u5"]
 [ext_resource type="Texture2D" uid="uid://b3coic1swxplg" path="res://sprites/panel_button.svg" id="1_njh2d"]
 [ext_resource type="Texture2D" uid="uid://b4qc0rydjmtn5" path="res://sprites/silent.svg" id="2_3n5om"]
+[ext_resource type="Script" path="res://scripts/settings_menu.gd" id="2_jy6c2"]
+[ext_resource type="Script" path="res://scripts/settings_back_button.gd" id="3_cfrfu"]
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="4_8owsi"]
 [ext_resource type="Texture2D" uid="uid://eq0qyc83koaj" path="res://sprites/back_button.svg" id="4_aifvn"]
 [ext_resource type="Script" path="res://scripts/subject_button.gd" id="4_u4kv6"]
@@ -35,29 +37,57 @@ script = ExtResource("1_5oejp")
 [node name="audio" type="AudioListener2D" parent="."]
 current = true
 
-[node name="meditation_settings" type="Node2D" parent="."]
+[node name="settings_menu" type="Node2D" parent="."]
 z_index = 200
-position = Vector2(0, 4821)
+position = Vector2(0, 4802)
+script = ExtResource("2_jy6c2")
+move_curve = SubResource("Curve_wefxq")
+blackout_percentage = 0.33
 
-[node name="blackout" type="ColorRect" parent="meditation_settings"]
+[node name="blackout" type="ColorRect" parent="settings_menu"]
 offset_left = -1255.0
 offset_top = -3925.0
 offset_right = 2130.0
 offset_bottom = 2608.0
 color = Color(0, 0, 0, 0)
 
-[node name="background" type="TextureRect" parent="meditation_settings"]
+[node name="back_button" type="TextureButton" parent="settings_menu"]
+offset_left = -1.0
+offset_top = -2403.0
+offset_right = 1076.0
+offset_bottom = -4.0
+script = ExtResource("3_cfrfu")
+
+[node name="background" type="TextureRect" parent="settings_menu"]
 clip_children = 1
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("1_6atf7")
 
-[node name="color" type="ColorRect" parent="meditation_settings/background"]
+[node name="color" type="ColorRect" parent="settings_menu/background"]
 layout_mode = 0
 offset_left = -119.0
 offset_top = -40.0
 offset_right = 1222.0
 offset_bottom = 2490.0
+color = Color(0.968627, 0.956863, 0.960784, 1)
+
+[node name="content_parent" type="VBoxContainer" parent="settings_menu"]
+offset_right = 40.0
+offset_bottom = 330.0
+theme_override_constants/separation = 0
+
+[node name="filler_top" type="Control" parent="settings_menu/content_parent"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="content" type="VBoxContainer" parent="settings_menu/content_parent"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="filler_bottom" type="Control" parent="settings_menu/content_parent"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
 
 [node name="meditation_menu" type="Node2D" parent="."]
 z_index = 100

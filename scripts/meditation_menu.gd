@@ -7,6 +7,10 @@ var _prefab_paths := preload("res://scripts/library/prefab_paths.gd").new()
 @export var half_shade_rpm: float
 @export var full_shade_rpm: float
 
+var _activated_at = -1.0
+var _full_time
+var _current_time
+
 var _main_scene
 var _main_menu
 var _audio
@@ -14,14 +18,12 @@ var _current_meditation
 var _screen_size
 var _blackout
 var _extra_button
+var _settings_menu
 var _center
 var _half_shade
 var _full_shade
 var _half_shade_pivot
 var _full_shade_pivot
-var _current_time
-var _full_time
-var _activated_at = -1.0
 
 var active = false
 
@@ -40,6 +42,7 @@ func start():
 	_current_time = get_node("center/center/container/timer/current_time")
 	_full_time = get_node("center/center/container/timer/full_time")
 	_extra_button = get_node("center/center/container/extra_container/extra_button")
+	_settings_menu = get_node(_scene_paths.SETTINGS_MENU)
 
 func _process(_delta):
 	var secs_since_activation = _main_scene.seconds() - _activated_at
@@ -50,26 +53,10 @@ func _process(_delta):
 	if active or secs_since_activation < 1.0:
 		_process_visual(weight)
 
-func _to_mins(seconds):
-	return _format_number(int(seconds / 60))
-
-func _to_secs(seconds):
-	return _format_number(int(seconds) % 60)
-
-func _format_number(num):
-	var ret = str(num)
-	while len(ret) < 2:
-		ret = "0" + ret
-	return ret
-
 func _process_visual(weight):
 	if _current_meditation != null:
-		var full_mins = _to_mins(_current_meditation.duration_mins * 60)
-		var full_secs = _to_secs(_current_meditation.duration_mins * 60)
-		_full_time.text = full_mins + ":" + full_secs
-		var elapsed_mins = _to_mins(_current_meditation.time_elapsed)
-		var elapsed_secs = _to_secs(_current_meditation.time_elapsed)
-		_current_time.text = elapsed_mins + ":" + elapsed_secs
+		_full_time.text = _main_scene.to_time_str(_current_meditation.duration_mins * 60)
+		_current_time.text = _main_scene.to_time_str(_current_meditation.time_elapsed)
 
 	if time_elapsed() > 0.0:
 		_extra_button.stop_texture()
@@ -99,6 +86,10 @@ func move_to_main_menu():
 	if active:
 		deactivate_menu()
 		_main_menu.activate_menu()
+
+func open_settings():
+	if active:
+		_settings_menu.activate_menu({"Choose duration": _current_meditation.possible_durations})
 
 func is_playing():
 	if _current_meditation == null:

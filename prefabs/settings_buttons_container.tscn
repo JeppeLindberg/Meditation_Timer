@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://bmwgr2v5cnwwt"]
+
+[node name="buttons" type="HBoxContainer"]
+theme_override_constants/separation = 50
+alignment = 1
