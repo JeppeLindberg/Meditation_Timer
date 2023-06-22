@@ -32,12 +32,15 @@ func activate_menu(settings_dict: Dictionary):
 	_activated_at = _main_scene.seconds()
 	_main_scene.make_clickable(self)
 
+	for child in _content.get_children():
+		child.queue_free()
+
 	for key in settings_dict.keys():
 		var setting = _main_scene.create_node(_setting_path, _content)
 		var setting_title = setting.get_node("title")
-		var setting_buttons_container = null
 		setting_title.text = key
 
+		var setting_buttons_container = null
 		var i = 0
 		for option in settings_dict[key]:
 			if i == 0:
