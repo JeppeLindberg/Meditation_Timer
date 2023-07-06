@@ -10,17 +10,25 @@ var _playing_keys = []
 var _playing_audio_streams = []
 var _sound_path = "res://audio_prefabs/%1.tscn"
 
-@onready var _main_scene = get_node(_scene_paths.MAIN_SCENE)
+var _main_scene
+var _settings_menu
 
-@export var duration_mins = 2.5 # In minutes
+@export var duration_mins = 0.5 # In minutes
 @export var possible_durations = [2.5]
 var time_elapsed = 0.0
 var playing = false
 
 
+func _ready():
+	_main_scene = get_node(_scene_paths.MAIN_SCENE)
+	_settings_menu = get_node(_scene_paths.SETTINGS_MENU)
+
 func _process(delta):
 	if playing:
 		time_elapsed += delta
+
+		if time_elapsed / 60.0 > duration_mins:
+			stop()
 
 		for key in meditation_sounds.keys():
 			if key in _playing_keys:
@@ -49,9 +57,25 @@ func pause():
 
 func stop():
 	playing = false
+	var save_time = false
+	var save_time_amount = time_elapsed
+
+	if time_elapsed / 60.0 > duration_mins / 2 or \
+		time_elapsed / 60.0 > 1.0:
+		save_time = true
+
 	time_elapsed = 0.0
 	update_children()
 	for node in _playing_audio_streams:
-		node.queue_free()
+		if not node == null:
+			node.queue_free()
 	_playing_keys = []
 	_playing_audio_streams = []
+
+	if save_time:
+		_save_time(save_time_amount)
+
+func _save_time(time):
+	_settings_menu.activate_save_time_menu(time, self)
+
+	

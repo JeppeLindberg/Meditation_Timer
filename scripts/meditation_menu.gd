@@ -89,7 +89,7 @@ func move_to_main_menu():
 
 func open_settings():
 	if active:
-		_settings_menu.activate_menu({"Choose duration": _current_meditation.possible_durations})
+		_settings_menu.activate_menu(_current_meditation)
 
 func is_playing():
 	if _current_meditation == null:

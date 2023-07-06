@@ -1,9 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://csdxdl2634dcl"]
+[gd_scene load_steps=3 format=3 uid="uid://csdxdl2634dcl"]
 
+[ext_resource type="Script" path="res://scripts/settings_button.gd" id="1_2ha7k"]
 [ext_resource type="Texture2D" uid="uid://creje0u2mvjue" path="res://sprites/settings_button.svg" id="1_kg22c"]
 
 [node name="settings_button" type="TextureButton"]
 custom_minimum_size = Vector2(460, 170)
+script = ExtResource("1_2ha7k")
 
 [node name="texture" type="NinePatchRect" parent="."]
 layout_mode = 0

@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://7q3skwec013m"]
+
+[node name="settings_text" type="CenterContainer"]
+custom_minimum_size = Vector2(1080, 300)
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="text" type="RichTextLabel" parent="."]
+clip_contents = false
+custom_minimum_size = Vector2(880, 1)
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 70
+bbcode_enabled = true
+text = "[center]BLA[/center]"
+fit_content = true

@@ -81,12 +81,16 @@ theme_override_constants/separation = 0
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 
+[node name="content_text" type="VBoxContainer" parent="settings_menu/content_parent"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
 [node name="content" type="VBoxContainer" parent="settings_menu/content_parent"]
 layout_mode = 2
 theme_override_constants/separation = 30
 
 [node name="filler_bottom" type="Control" parent="settings_menu/content_parent"]
-custom_minimum_size = Vector2(0, 300)
+custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
 [node name="meditation_menu" type="Node2D" parent="."]
