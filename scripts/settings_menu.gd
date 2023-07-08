@@ -35,18 +35,19 @@ func activate_save_time_menu(_time, meditation):
 	var settings_dict = {}
 	settings_dict[""] = ["Back"]
 
-	var text = "[center]BLA[/center]"
+	var line_1 = "Minutes meditated:"
+	var line_2 = "100"
 
-	_activate_menu(text, settings_dict, meditation)
+	_activate_menu(line_1, line_2, settings_dict, meditation)
 
 func activate_menu(meditation):
 	var settings_dict = {}
 	settings_dict["Duration"] = meditation.possible_durations
 	settings_dict[""] = ["Back"]
 
-	_activate_menu("", settings_dict, meditation)
+	_activate_menu("", "", settings_dict, meditation)
 
-func _activate_menu(text, settings_dict, meditation):
+func _activate_menu(text_line_1, text_line_2, settings_dict, meditation):
 	active = true
 	_activated_at = _main_scene.seconds()
 	_main_scene.make_clickable(self)
@@ -83,10 +84,10 @@ func _activate_menu(text, settings_dict, meditation):
 			if i == 2:
 				i = 0
 		
-	if not text == "":
+	if not text_line_1 == "":
 		var settings_text = _main_scene.create_node(_settings_text_path, _content_text)
-		var rich_text = settings_text.get_node("text")
-		rich_text.text = text
+		var rich_text = settings_text.get_node("settings_text/text")
+		rich_text.text = "[center]%1\n\n%2[/center]".replace("%1", text_line_1).replace("%2", text_line_2)
 
 func move_to_meditation_menu():
 	active = false

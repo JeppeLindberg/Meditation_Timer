@@ -1,11 +1,18 @@
 [gd_scene format=3 uid="uid://7q3skwec013m"]
 
-[node name="settings_text" type="CenterContainer"]
-custom_minimum_size = Vector2(1080, 300)
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="container" type="VBoxContainer"]
+offset_right = 1080.0
+offset_bottom = 504.0
 
-[node name="text" type="RichTextLabel" parent="."]
+[node name="top_buffer" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="settings_text" type="CenterContainer" parent="."]
+custom_minimum_size = Vector2(1080, 300)
+layout_mode = 2
+
+[node name="text" type="RichTextLabel" parent="settings_text"]
 clip_contents = false
 custom_minimum_size = Vector2(880, 1)
 layout_mode = 2

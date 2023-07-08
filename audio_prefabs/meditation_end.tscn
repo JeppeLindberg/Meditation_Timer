@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgwd3ctnfp7bn"]
+
+[ext_resource type="AudioStream" uid="uid://b4hlc5qhs7ltd" path="res://audio/meditation_end.mp3" id="1_n71qn"]
+[ext_resource type="Script" path="res://scripts/self_destroy_audio.gd" id="2_an3v3"]
+
+[node name="meditation_begin" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_n71qn")
+script = ExtResource("2_an3v3")
+
+[connection signal="finished" from="." to="." method="_on_finished"]
