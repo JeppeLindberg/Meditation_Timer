@@ -15,6 +15,7 @@ var _activated_at = -1.0
 
 var _main_scene
 var _meditation_menu
+var _user_data
 var _screen_size
 var _content
 var _content_text
@@ -26,17 +27,19 @@ func start():
 	_main_scene = get_node(_scene_paths.MAIN_SCENE)
 	_screen_size = get_node(_scene_paths.SCREEN_SIZE)
 	_meditation_menu = get_node(_scene_paths.MEDITATION_MENU)
+	_user_data = get_node(_scene_paths.USER_DATA)
 	_blackout = get_node("blackout")
 	_content_parent = get_node("content_parent")
 	_content = get_node("content_parent/content")
 	_content_text = get_node("content_parent/content_text")
 
-func activate_save_time_menu(_time, meditation):
+func activate_save_time_menu(meditation):
 	var settings_dict = {}
 	settings_dict[""] = ["Back"]
 
+	var total_time_mins = _user_data.get_total_meditation_time()
 	var line_1 = "Minutes meditated:"
-	var line_2 = "100"
+	var line_2 = str(int(total_time_mins))
 
 	_activate_menu(line_1, line_2, settings_dict, meditation)
 

@@ -4,5 +4,6 @@ const MEDITATION_MENU: String = "/root/main_scene/meditation_menu"
 const SETTINGS_MENU: String = "/root/main_scene/settings_menu"
 const SCREEN_SIZE: String = "/root/main_scene/screen_size"
 const AUDIO: String = "/root/main_scene/audio"
+const USER_DATA: String = "/root/main_scene/user_data"
 
 

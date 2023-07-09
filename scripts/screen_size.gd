@@ -22,5 +22,5 @@ func _process(_delta):
 	bottom_left = Vector2(0, screen_size.y)
 	center = Vector2(screen_size.x * 0.5, screen_size.y * 0.5)
 	center_off_top = Vector2(screen_size.x * 0.5, screen_size.y * 0.25)
-	center_off_bottom = Vector2(screen_size.x * 0.5, screen_size.y * 0.75)
+	center_off_bottom = Vector2(screen_size.x * 0.5, screen_size.y * 0.80)
 

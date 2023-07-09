@@ -12,6 +12,7 @@ var _sound_path = "res://audio_prefabs/%1.tscn"
 
 var _main_scene
 var _settings_menu
+var _user_data
 
 @export var duration_mins = 0.5 # In minutes
 @export var possible_durations = [2.5]
@@ -22,6 +23,7 @@ var playing = false
 func _ready():
 	_main_scene = get_node(_scene_paths.MAIN_SCENE)
 	_settings_menu = get_node(_scene_paths.SETTINGS_MENU)
+	_user_data = get_node(_scene_paths.USER_DATA)
 
 func _process(delta):
 	if playing:
@@ -73,9 +75,11 @@ func stop():
 	_playing_audio_streams = []
 
 	if save_time:
-		_save_time(save_time_amount)
+		_save_time(save_time_amount / 60.0)
 
-func _save_time(time):
-	_settings_menu.activate_save_time_menu(time, self)
+func _save_time(time_mins):
+	_user_data.save_meditation("silence", time_mins)
+
+	_settings_menu.activate_save_time_menu(self)
 
 	

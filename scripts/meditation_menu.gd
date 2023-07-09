@@ -39,8 +39,8 @@ func start():
 	_full_shade = get_node("background/full_shade")
 	_half_shade_pivot = get_node("background/half_shade/pivot")
 	_full_shade_pivot = get_node("background/full_shade/pivot")
-	_current_time = get_node("center/center/container/timer/current_time")
-	_full_time = get_node("center/center/container/timer/full_time")
+	_current_time = get_node("center/center/container/timer_container/timer/current_time")
+	_full_time = get_node("center/center/container/timer_container/timer/full_time")
 	_extra_button = get_node("center/center/container/extra_container/extra_button")
 	_settings_menu = get_node(_scene_paths.SETTINGS_MENU)
 
