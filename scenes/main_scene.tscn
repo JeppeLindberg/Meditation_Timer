@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://dh0dt8b5o2yg1"]
+[gd_scene load_steps=32 format=3 uid="uid://dh0dt8b5o2yg1"]
 
 [ext_resource type="Script" path="res://scripts/main_scene.gd" id="1_5oejp"]
 [ext_resource type="Texture2D" uid="uid://dy7ubts3wma1p" path="res://sprites/shelf.svg" id="1_6atf7"]
@@ -28,6 +28,7 @@
 [ext_resource type="FontFile" uid="uid://cg8h28kd1yopx" path="res://fonts/Carlito-Regular.ttf" id="16_wfxkp"]
 [ext_resource type="Texture2D" uid="uid://c56xcpm1a8ru0" path="res://sprites/meditation_settings.svg" id="17_3gyys"]
 [ext_resource type="Texture2D" uid="uid://b4m2g52ve87mc" path="res://sprites/meditation_settings_pressed.svg" id="18_c0qx3"]
+[ext_resource type="Texture2D" uid="uid://csgdla7pvb65w" path="res://icon.svg" id="24_3ol0p"]
 [ext_resource type="Script" path="res://scripts/user_data.gd" id="27_mt35l"]
 
 [sub_resource type="Curve" id="Curve_wefxq"]
@@ -278,10 +279,41 @@ offset_right = 1080.0
 offset_bottom = 2400.0
 color = Color(0.968627, 0.956863, 0.960784, 1)
 
+[node name="center_icons" type="CenterContainer" parent="main_menu/top"]
+offset_left = 540.0
+offset_top = 348.0
+offset_right = 580.0
+offset_bottom = 388.0
+use_top_left = true
+
+[node name="container" type="VBoxContainer" parent="main_menu/top/center_icons"]
+layout_mode = 2
+
+[node name="icon_container" type="CenterContainer" parent="main_menu/top/center_icons/container"]
+custom_minimum_size = Vector2(350, 350)
+layout_mode = 2
+
+[node name="icon" type="TextureRect" parent="main_menu/top/center_icons/container/icon_container"]
+layout_mode = 2
+texture = ExtResource("24_3ol0p")
+
+[node name="space" type="Control" parent="main_menu/top/center_icons/container"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="label" type="Label" parent="main_menu/top/center_icons/container"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.145098, 0.12549, 0.129412, 1)
+theme_override_fonts/font = ExtResource("16_wfxkp")
+theme_override_font_sizes/font_size = 70
+text = "Simple Meditation Timer"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="center" type="Node2D" parent="main_menu"]
 position = Vector2(540, 960)
 
-[node name="center" type="CenterContainer" parent="main_menu/center"]
+[node name="center_subjects" type="CenterContainer" parent="main_menu/center"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -294,19 +326,19 @@ offset_bottom = 75.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="subjects" type="VBoxContainer" parent="main_menu/center/center"]
+[node name="subjects" type="VBoxContainer" parent="main_menu/center/center_subjects"]
 custom_minimum_size = Vector2(800, 0)
 layout_mode = 2
 theme_override_constants/separation = 70
 
-[node name="silent" type="TextureButton" parent="main_menu/center/center/subjects"]
+[node name="silent" type="TextureButton" parent="main_menu/center/center_subjects/subjects"]
 custom_minimum_size = Vector2(0, 400)
 layout_mode = 2
 script = ExtResource("4_u4kv6")
 unpressed_panel_texture = ExtResource("1_njh2d")
 pressed_panel_texture = ExtResource("6_iigh6")
 
-[node name="panel" type="NinePatchRect" parent="main_menu/center/center/subjects/silent"]
+[node name="panel" type="NinePatchRect" parent="main_menu/center/center_subjects/subjects/silent"]
 layout_mode = 2
 offset_right = 800.0
 offset_bottom = 400.0
@@ -317,7 +349,7 @@ patch_margin_top = 80
 patch_margin_right = 80
 patch_margin_bottom = 80
 
-[node name="label" type="Label" parent="main_menu/center/center/subjects/silent"]
+[node name="label" type="Label" parent="main_menu/center/center_subjects/subjects/silent"]
 layout_mode = 0
 offset_top = 300.0
 offset_right = 800.0
@@ -328,7 +360,7 @@ text = "Silent"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="image" type="TextureRect" parent="main_menu/center/center/subjects/silent"]
+[node name="image" type="TextureRect" parent="main_menu/center/center_subjects/subjects/silent"]
 layout_mode = 0
 offset_left = 26.0
 offset_top = 26.0
