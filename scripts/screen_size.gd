@@ -21,7 +21,7 @@ func _process(_delta):
 
 	top_left = Vector2(0, 0)
 	bottom_left = Vector2(0, screen_size.y)
-	main_menu_buttons = Vector2(screen_size.x * 0.5, screen_size.y * 0.55)
+	main_menu_buttons = Vector2(screen_size.x * 0.5, screen_size.y * 0.58)
 	center = Vector2(screen_size.x * 0.5, screen_size.y * 0.45)
 	center_off_top = Vector2(screen_size.x * 0.5, screen_size.y * 0.20)
 	center_off_bottom = Vector2(screen_size.x * 0.5, screen_size.y * 0.80)

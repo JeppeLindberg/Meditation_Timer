@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://dh0dt8b5o2yg1"]
+[gd_scene load_steps=35 format=3 uid="uid://dh0dt8b5o2yg1"]
 
 [ext_resource type="Script" path="res://scripts/main_scene.gd" id="1_5oejp"]
 [ext_resource type="Texture2D" uid="uid://dy7ubts3wma1p" path="res://sprites/shelf.svg" id="1_6atf7"]
@@ -27,9 +27,12 @@
 [ext_resource type="FontFile" uid="uid://cg8h28kd1yopx" path="res://fonts/Carlito-Regular.ttf" id="16_wfxkp"]
 [ext_resource type="Texture2D" uid="uid://c56xcpm1a8ru0" path="res://sprites/meditation_settings.svg" id="17_3gyys"]
 [ext_resource type="Texture2D" uid="uid://b4m2g52ve87mc" path="res://sprites/meditation_settings_pressed.svg" id="18_c0qx3"]
-[ext_resource type="Texture2D" uid="uid://csgdla7pvb65w" path="res://icon.svg" id="24_3ol0p"]
+[ext_resource type="Texture2D" uid="uid://c5kyokrwsltji" path="res://sprites/icon.svg" id="24_b4yxi"]
 [ext_resource type="Script" path="res://scripts/user_data.gd" id="27_mt35l"]
 [ext_resource type="Texture2D" uid="uid://do3fho00d6ndy" path="res://sprites/silent_v2.svg" id="28_inoh7"]
+[ext_resource type="Texture2D" uid="uid://c5ei6tt7eyl8w" path="res://sprites/interval.svg" id="29_k4wtc"]
+[ext_resource type="Texture2D" uid="uid://clki56or4cma4" path="res://sprites/star.svg" id="30_tpocn"]
+[ext_resource type="Script" path="res://scripts/credits_button.gd" id="31_5ay31"]
 
 [sub_resource type="Curve" id="Curve_wefxq"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.318328, 1), 0.0, 0.0, 0, 0]
@@ -295,7 +298,7 @@ layout_mode = 2
 
 [node name="icon" type="TextureRect" parent="main_menu/top/center_icons/container/icon_container"]
 layout_mode = 2
-texture = ExtResource("24_3ol0p")
+texture = ExtResource("24_b4yxi")
 
 [node name="space" type="Control" parent="main_menu/top/center_icons/container"]
 custom_minimum_size = Vector2(0, 20)
@@ -379,7 +382,7 @@ offset_bottom = 486.0
 theme_override_colors/font_color = Color(0.145098, 0.12549, 0.129412, 1)
 theme_override_fonts/font = ExtResource("16_wfxkp")
 theme_override_font_sizes/font_size = 60
-text = "Silent"
+text = "Silence"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -421,7 +424,7 @@ patch_margin_bottom = 80
 layout_mode = 0
 offset_right = 900.0
 offset_bottom = 400.0
-texture = ExtResource("28_inoh7")
+texture = ExtResource("29_k4wtc")
 
 [node name="label" type="Label" parent="main_menu/center/center_subjects/subjects/interval/panel"]
 layout_mode = 0
@@ -434,6 +437,30 @@ theme_override_font_sizes/font_size = 60
 text = "Interval"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="bottom" type="Node2D" parent="main_menu"]
+position = Vector2(540, 2400)
+
+[node name="container" type="VBoxContainer" parent="main_menu/bottom"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -75.0
+offset_top = -150.0
+offset_right = 75.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="credits" type="TextureButton" parent="main_menu/bottom/container"]
+layout_mode = 2
+texture_normal = ExtResource("30_tpocn")
+script = ExtResource("31_5ay31")
+
+[node name="space" type="Control" parent="main_menu/bottom/container"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
 
 [node name="screen_size" type="Node2D" parent="."]
 process_priority = -1

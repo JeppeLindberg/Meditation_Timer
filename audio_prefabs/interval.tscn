@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwk6jkrehp4qi"]
+
+[ext_resource type="AudioStream" uid="uid://0t4jghi0kfa1" path="res://audio/interval.mp3" id="1_gla5o"]
+[ext_resource type="Script" path="res://scripts/self_destroy_audio.gd" id="2_ntk6l"]
+
+[node name="meditation_begin" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_gla5o")
+script = ExtResource("2_ntk6l")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

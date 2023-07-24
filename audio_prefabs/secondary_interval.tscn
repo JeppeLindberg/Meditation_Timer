@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://ca654ratbiv02"]
+
+[ext_resource type="AudioStream" uid="uid://gtb8xuui30om" path="res://audio/secondary_interval.mp3" id="1_dh1ap"]
+[ext_resource type="Script" path="res://scripts/self_destroy_audio.gd" id="2_wnivm"]
+
+[node name="secondary_interval" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_dh1ap")
+script = ExtResource("2_wnivm")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

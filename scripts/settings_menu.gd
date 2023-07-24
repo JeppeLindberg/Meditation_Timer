@@ -11,10 +11,12 @@ var _settings_button_container_path = "res://prefabs/settings_buttons_container.
 @export var blackout_percentage: float
 
 var active = false
+var _return_menu = ""
 var _activated_at = -1.0
 
 var _main_scene
 var _meditation_menu
+var _main_menu
 var _user_data
 var _screen_size
 var _content
@@ -27,11 +29,22 @@ func start():
 	_main_scene = get_node(_scene_paths.MAIN_SCENE)
 	_screen_size = get_node(_scene_paths.SCREEN_SIZE)
 	_meditation_menu = get_node(_scene_paths.MEDITATION_MENU)
+	_main_menu = get_node(_scene_paths.MAIN_MENU)
 	_user_data = get_node(_scene_paths.USER_DATA)
 	_blackout = get_node("blackout")
 	_content_parent = get_node("content_parent")
 	_content = get_node("content_parent/content")
 	_content_text = get_node("content_parent/content_text")
+
+func activate_credits_menu():
+	var settings_dict = {}
+	settings_dict[""] = ["Back"]
+
+	var line_1 = "Credits:"
+	var line_2 = "App by Sort Sol Games\n\nSound effects obtained from\nwww.zapsplat.com"
+
+	_return_menu = "main"
+	_activate_menu(line_1, line_2, settings_dict, null)
 
 func activate_save_time_menu(meditation):
 	var settings_dict = {}
@@ -41,6 +54,7 @@ func activate_save_time_menu(meditation):
 	var line_1 = "Minutes meditated:"
 	var line_2 = str(int(total_time_mins))
 
+	_return_menu = "meditation"
 	_activate_menu(line_1, line_2, settings_dict, meditation)
 
 func activate_menu(meditation):
@@ -54,6 +68,7 @@ func activate_menu(meditation):
 	
 	settings_dict[""] = ["Back"]
 
+	_return_menu = "meditation"
 	_activate_menu("", "", settings_dict, meditation)
 
 func _activate_menu(text_line_1, text_line_2, settings_dict, meditation):
@@ -108,10 +123,13 @@ func _activate_menu(text_line_1, text_line_2, settings_dict, meditation):
 		var rich_text = settings_text.get_node("settings_text/text")
 		rich_text.text = "[center]%1\n\n%2[/center]".replace("%1", text_line_1).replace("%2", text_line_2)
 
-func move_to_meditation_menu():
+func close_menu():
 	active = false
 	_activated_at = _main_scene.seconds()
-	_main_scene.make_clickable(_meditation_menu)
+	if _return_menu == "meditation":
+		_main_scene.make_clickable(_meditation_menu)
+	elif _return_menu == "main":
+		_main_scene.make_clickable(_main_menu)
 
 func _process(_delta):
 	var secs_since_activation = _main_scene.seconds() - _activated_at

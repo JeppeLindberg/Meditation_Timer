@@ -13,7 +13,7 @@ func _exists(path):
 	return FileAccess.file_exists(path)
 
 func _create_empty_user_data_json():
-	_write_user_data({"meditation_sessions": []})
+	_write_user_data({"meditation_settings": {}, "meditation_sessions": []})
 
 func _read_user_data():
 	_find_user_data_path()
@@ -32,12 +32,51 @@ func _write_user_data(dict):
 
 	user_data_file.store_line(json_string)
 
-func save_meditation(meditation_name, duration_mins):
+func read_meditation_settings(meditation):
 	_find_user_data_path()
-
 	if not _exists(_user_data_path):
 		_create_empty_user_data_json()
+
+	var user_data = _read_user_data()
+
+	if not user_data["meditation_settings"].has(meditation.meditation_type):
+		if len(meditation.possible_durations) > 0:
+			meditation.duration_mins = meditation.possible_durations[0]
+		if len(meditation.possible_intervals) > 0:
+			meditation.interval_mins = meditation.possible_intervals[0]
+		if len(meditation.possible_secondary_intervals) > 0:
+			meditation.secondary_interval_mins = meditation.possible_secondary_intervals[0]
+
+		user_data["meditation_settings"][meditation.meditation_type] = {
+			"duration_mins": meditation.duration_mins,
+			"interval_mins": meditation.interval_mins,
+			"secondary_interval_mins": meditation.secondary_interval_mins,
+		}
+
+		_write_user_data(user_data)
 	
+	return user_data["meditation_settings"][meditation.meditation_type]
+
+func write_meditation_settings(meditation):
+	_find_user_data_path()
+	if not _exists(_user_data_path):
+		_create_empty_user_data_json()
+
+	var user_data = _read_user_data()
+	
+	user_data["meditation_settings"][meditation.meditation_type] = {
+		"duration_mins": meditation.duration_mins,
+		"interval_mins": meditation.interval_mins,
+		"secondary_interval_mins": meditation.secondary_interval_mins,
+	}
+
+	_write_user_data(user_data)
+
+func save_meditation(meditation_name, duration_mins):
+	_find_user_data_path()
+	if not _exists(_user_data_path):
+		_create_empty_user_data_json()
+
 	var time = Time.get_datetime_dict_from_system()
 
 	var new_meditation = \

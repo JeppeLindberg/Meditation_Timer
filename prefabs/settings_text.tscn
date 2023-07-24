@@ -14,10 +14,10 @@ layout_mode = 2
 
 [node name="text" type="RichTextLabel" parent="settings_text"]
 clip_contents = false
-custom_minimum_size = Vector2(880, 1)
+custom_minimum_size = Vector2(980, 1)
 layout_mode = 2
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 70
+theme_override_colors/default_color = Color(0.145098, 0.12549, 0.129412, 1)
+theme_override_font_sizes/normal_font_size = 65
 bbcode_enabled = true
 text = "[center]BLA[/center]"
 fit_content = true

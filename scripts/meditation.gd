@@ -2,6 +2,7 @@ extends Node2D
 
 var _scene_paths := preload("res://scripts/library/scene_paths.gd").new()
 
+var meditation_type = ""
 @export var meditation_sounds = {
 	0.5: "meditation_begin",
 	-7.5: "meditation_begin"
@@ -32,6 +33,14 @@ func _ready():
 	_main_scene = get_node(_scene_paths.MAIN_SCENE)
 	_settings_menu = get_node(_scene_paths.SETTINGS_MENU)
 	_user_data = get_node(_scene_paths.USER_DATA)
+
+func prepare_meditation(meditation_type_str):
+	meditation_type = meditation_type_str
+	var meditation_settings_dict = _user_data.read_meditation_settings(self)
+
+	duration_mins = meditation_settings_dict["duration_mins"]
+	interval_mins = meditation_settings_dict["interval_mins"]
+	secondary_interval_mins = meditation_settings_dict["secondary_interval_mins"]
 
 func _process(delta):
 	if playing:
@@ -69,9 +78,14 @@ func play():
 		if interval_mins > 0.0:
 			var ticker_mins = interval_mins
 			while(ticker_mins <= duration_mins):
-				_meditation_sounds[ticker_mins * 60.0] = "meditation_begin"
+				_meditation_sounds[ticker_mins * 60.0] = "interval"
+
 				if secondary_interval_mins > 0.0:
-					_meditation_sounds[(ticker_mins + secondary_interval_mins) * 60.0] = "meditation_begin"
+					var second_interval_mins = secondary_interval_mins
+					if second_interval_mins > interval_mins / 2:
+						second_interval_mins = interval_mins / 2
+					_meditation_sounds[(ticker_mins + second_interval_mins) * 60.0] = "secondary_interval"
+				
 				ticker_mins += interval_mins
 
 	update_children()
@@ -103,8 +117,11 @@ func stop():
 		_save_time(save_time_amount / 60.0)
 
 func _save_time(time_mins):
-	_user_data.save_meditation("silence", time_mins)
+	_user_data.save_meditation(meditation_type, time_mins)
 
 	_settings_menu.activate_save_time_menu(self)
+
+func update_meditation_settings_user_data():
+	_user_data.write_meditation_settings(self)
 
 	

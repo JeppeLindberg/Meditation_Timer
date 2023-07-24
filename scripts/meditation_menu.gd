@@ -85,6 +85,8 @@ func activate_menu(meditation_type):
 		_title.text = "Interval"
 		_current_meditation = _main_scene.create_node(_prefab_paths.INTERVAL, _audio)
 
+	_current_meditation.prepare_meditation(meditation_type)
+
 func deactivate_menu():
 	active = false
 	_activated_at = _main_scene.seconds()
