@@ -56,6 +56,7 @@ func _button_pressed():
 	elif target_key == "Secondary interval":
 		target_meditation.secondary_interval_mins = target_option
 	
-	target_meditation.update_meditation_settings_user_data()
+	if target_meditation != null:
+		target_meditation.update_meditation_settings_user_data()
 	
 	_settings_menu.close_menu()
