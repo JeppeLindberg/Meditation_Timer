@@ -14,7 +14,7 @@ func start():
 	_center = get_node("center")
 
 func _process(_delta):
-	_center.global_position = _screen_size.center
+	_center.global_position = _screen_size.main_menu_buttons
 
 func activate_menu():
 	active = true

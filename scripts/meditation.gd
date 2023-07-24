@@ -6,6 +6,7 @@ var _scene_paths := preload("res://scripts/library/scene_paths.gd").new()
 	0.5: "meditation_begin",
 	-7.5: "meditation_begin"
 }
+var _meditation_sounds = {}
 var _playing_keys = []
 var _playing_audio_streams = []
 var _sound_path = "res://audio_prefabs/%1.tscn"
@@ -15,7 +16,14 @@ var _settings_menu
 var _user_data
 
 @export var duration_mins = 0.5 # In minutes
+var interval_mins = 0.0
+var secondary_interval_mins = 0.0
 @export var possible_durations = [2.5]
+@export var possible_intervals = []
+@export var possible_secondary_intervals = []
+
+var next_interval = 0.0
+var next_secondary_interval = 0.0
 var time_elapsed = 0.0
 var playing = false
 
@@ -32,14 +40,14 @@ func _process(delta):
 		if time_elapsed / 60.0 > duration_mins:
 			stop()
 
-		for key in meditation_sounds.keys():
+		for key in _meditation_sounds.keys():
 			if key in _playing_keys:
 				continue
 
 			var duration_in_secs = duration_mins * 60.0
 			if (key >= 0.0 and key < time_elapsed) or \
 				(key < 0.0 and time_elapsed > duration_in_secs + key):
-				var audio_stream = _main_scene.create_node(_sound_path.replace("%1", meditation_sounds[key]), self)
+				var audio_stream = _main_scene.create_node(_sound_path.replace("%1", _meditation_sounds[key]), self)
 				_playing_keys.append(key)
 				_playing_audio_streams.append(audio_stream)
 				audio_stream.playing = true
@@ -51,6 +59,21 @@ func update_children():
 
 func play():
 	playing = true
+
+	if time_elapsed == 0.0:
+		# Meditation just began
+		_meditation_sounds = {}
+		for key in meditation_sounds.keys():
+			_meditation_sounds[key] = meditation_sounds[key]
+
+		if interval_mins > 0.0:
+			var ticker_mins = interval_mins
+			while(ticker_mins <= duration_mins):
+				_meditation_sounds[ticker_mins * 60.0] = "meditation_begin"
+				if secondary_interval_mins > 0.0:
+					_meditation_sounds[(ticker_mins + secondary_interval_mins) * 60.0] = "meditation_begin"
+				ticker_mins += interval_mins
+
 	update_children()
 
 func pause():
@@ -66,6 +89,8 @@ func stop():
 		time_elapsed / 60.0 > 1.0:
 		save_time = true
 
+	next_interval = 0.0
+	next_secondary_interval = 0.0
 	time_elapsed = 0.0
 	update_children()
 	for node in _playing_audio_streams:

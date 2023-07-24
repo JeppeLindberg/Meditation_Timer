@@ -17,6 +17,7 @@ var _audio
 var _current_meditation
 var _screen_size
 var _blackout
+var _title
 var _extra_button
 var _settings_menu
 var _center
@@ -39,6 +40,7 @@ func start():
 	_full_shade = get_node("background/full_shade")
 	_half_shade_pivot = get_node("background/half_shade/pivot")
 	_full_shade_pivot = get_node("background/full_shade/pivot")
+	_title = get_node("center/center/container/title")
 	_current_time = get_node("center/center/container/timer_container/timer/current_time")
 	_full_time = get_node("center/center/container/timer_container/timer/full_time")
 	_extra_button = get_node("center/center/container/extra_container/extra_button")
@@ -71,12 +73,17 @@ func _process_visual(weight):
 	_half_shade_pivot.rotation_degrees = (_main_scene.seconds() / 60.0) * 360 * half_shade_rpm
 	_full_shade_pivot.rotation_degrees = (_main_scene.seconds() / 60.0) * 360 * full_shade_rpm
 
-func activate_menu():
+func activate_menu(meditation_type):
 	active = true
 	_activated_at = _main_scene.seconds()
 	_main_scene.make_clickable(self)
 	
-	_current_meditation = _main_scene.create_node(_prefab_paths.SILENCE, _audio)
+	if meditation_type == "silent":
+		_title.text = "Silence"
+		_current_meditation = _main_scene.create_node(_prefab_paths.SILENCE, _audio)
+	if meditation_type == "interval":
+		_title.text = "Interval"
+		_current_meditation = _main_scene.create_node(_prefab_paths.INTERVAL, _audio)
 
 func deactivate_menu():
 	active = false

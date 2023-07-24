@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://dy7ubts3wma1p" path="res://sprites/shelf.svg" id="1_6atf7"]
 [ext_resource type="Script" path="res://scripts/meditation_menu.gd" id="1_8s6u5"]
 [ext_resource type="Texture2D" uid="uid://b3coic1swxplg" path="res://sprites/panel_button.svg" id="1_njh2d"]
-[ext_resource type="Texture2D" uid="uid://b4qc0rydjmtn5" path="res://sprites/silent.svg" id="2_3n5om"]
 [ext_resource type="Script" path="res://scripts/settings_menu.gd" id="2_jy6c2"]
 [ext_resource type="Script" path="res://scripts/settings_back_button.gd" id="3_cfrfu"]
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="4_8owsi"]
@@ -30,6 +29,7 @@
 [ext_resource type="Texture2D" uid="uid://b4m2g52ve87mc" path="res://sprites/meditation_settings_pressed.svg" id="18_c0qx3"]
 [ext_resource type="Texture2D" uid="uid://csgdla7pvb65w" path="res://icon.svg" id="24_3ol0p"]
 [ext_resource type="Script" path="res://scripts/user_data.gd" id="27_mt35l"]
+[ext_resource type="Texture2D" uid="uid://do3fho00d6ndy" path="res://sprites/silent_v2.svg" id="28_inoh7"]
 
 [sub_resource type="Curve" id="Curve_wefxq"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.318328, 1), 0.0, 0.0, 0, 0]
@@ -194,7 +194,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 
-[node name="meditation_name" type="Label" parent="meditation_menu/center/center/container"]
+[node name="title" type="Label" parent="meditation_menu/center/center/container"]
 custom_minimum_size = Vector2(1080, 200)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.145098, 0.12549, 0.129412, 1)
@@ -311,7 +311,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="center" type="Node2D" parent="main_menu"]
-position = Vector2(540, 960)
+position = Vector2(540, 1264)
 
 [node name="center_subjects" type="CenterContainer" parent="main_menu/center"]
 anchors_preset = 8
@@ -327,21 +327,22 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="subjects" type="VBoxContainer" parent="main_menu/center/center_subjects"]
-custom_minimum_size = Vector2(800, 0)
+custom_minimum_size = Vector2(900, 0)
 layout_mode = 2
 theme_override_constants/separation = 70
 
 [node name="silent" type="TextureButton" parent="main_menu/center/center_subjects/subjects"]
-custom_minimum_size = Vector2(0, 400)
+custom_minimum_size = Vector2(0, 500)
 layout_mode = 2
 script = ExtResource("4_u4kv6")
 unpressed_panel_texture = ExtResource("1_njh2d")
 pressed_panel_texture = ExtResource("6_iigh6")
+meditation_type = "silent"
 
 [node name="panel" type="NinePatchRect" parent="main_menu/center/center_subjects/subjects/silent"]
 layout_mode = 2
-offset_right = 800.0
-offset_bottom = 400.0
+offset_right = 900.0
+offset_bottom = 500.0
 texture = ExtResource("1_njh2d")
 region_rect = Rect2(0, 0, 200, 200)
 patch_margin_left = 80
@@ -349,24 +350,90 @@ patch_margin_top = 80
 patch_margin_right = 80
 patch_margin_bottom = 80
 
-[node name="label" type="Label" parent="main_menu/center/center_subjects/subjects/silent"]
+[node name="panel" type="NinePatchRect" parent="main_menu/center/center_subjects/subjects/silent/panel"]
+clip_children = 1
 layout_mode = 0
-offset_top = 300.0
-offset_right = 800.0
-offset_bottom = 386.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+offset_left = 25.0
+offset_top = 25.0
+offset_right = 925.0
+offset_bottom = 425.0
+scale = Vector2(0.945, 0.945)
+texture = ExtResource("1_njh2d")
+region_rect = Rect2(0, 0, 200, 200)
+patch_margin_left = 80
+patch_margin_top = 80
+patch_margin_right = 80
+patch_margin_bottom = 80
+
+[node name="image" type="TextureRect" parent="main_menu/center/center_subjects/subjects/silent/panel/panel"]
+layout_mode = 0
+offset_right = 900.0
+offset_bottom = 400.0
+texture = ExtResource("28_inoh7")
+
+[node name="label" type="Label" parent="main_menu/center/center_subjects/subjects/silent/panel"]
+layout_mode = 0
+offset_top = 400.0
+offset_right = 900.0
+offset_bottom = 486.0
+theme_override_colors/font_color = Color(0.145098, 0.12549, 0.129412, 1)
+theme_override_fonts/font = ExtResource("16_wfxkp")
 theme_override_font_sizes/font_size = 60
 text = "Silent"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="image" type="TextureRect" parent="main_menu/center/center_subjects/subjects/silent"]
+[node name="interval" type="TextureButton" parent="main_menu/center/center_subjects/subjects"]
+custom_minimum_size = Vector2(0, 500)
+layout_mode = 2
+script = ExtResource("4_u4kv6")
+unpressed_panel_texture = ExtResource("1_njh2d")
+pressed_panel_texture = ExtResource("6_iigh6")
+meditation_type = "interval"
+
+[node name="panel" type="NinePatchRect" parent="main_menu/center/center_subjects/subjects/interval"]
+layout_mode = 2
+offset_right = 900.0
+offset_bottom = 500.0
+texture = ExtResource("1_njh2d")
+region_rect = Rect2(0, 0, 200, 200)
+patch_margin_left = 80
+patch_margin_top = 80
+patch_margin_right = 80
+patch_margin_bottom = 80
+
+[node name="panel" type="NinePatchRect" parent="main_menu/center/center_subjects/subjects/interval/panel"]
+clip_children = 1
 layout_mode = 0
-offset_left = 26.0
-offset_top = 26.0
-offset_right = 776.0
-offset_bottom = 296.0
-texture = ExtResource("2_3n5om")
+offset_left = 25.0
+offset_top = 25.0
+offset_right = 925.0
+offset_bottom = 425.0
+scale = Vector2(0.945, 0.945)
+texture = ExtResource("1_njh2d")
+region_rect = Rect2(0, 0, 200, 200)
+patch_margin_left = 80
+patch_margin_top = 80
+patch_margin_right = 80
+patch_margin_bottom = 80
+
+[node name="image" type="TextureRect" parent="main_menu/center/center_subjects/subjects/interval/panel/panel"]
+layout_mode = 0
+offset_right = 900.0
+offset_bottom = 400.0
+texture = ExtResource("28_inoh7")
+
+[node name="label" type="Label" parent="main_menu/center/center_subjects/subjects/interval/panel"]
+layout_mode = 0
+offset_top = 400.0
+offset_right = 900.0
+offset_bottom = 486.0
+theme_override_colors/font_color = Color(0.145098, 0.12549, 0.129412, 1)
+theme_override_fonts/font = ExtResource("16_wfxkp")
+theme_override_font_sizes/font_size = 60
+text = "Interval"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="screen_size" type="Node2D" parent="."]
 process_priority = -1

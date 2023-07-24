@@ -46,6 +46,12 @@ func activate_save_time_menu(meditation):
 func activate_menu(meditation):
 	var settings_dict = {}
 	settings_dict["Duration"] = meditation.possible_durations
+
+	if len(meditation.possible_intervals) > 0:
+		settings_dict["Interval"] = meditation.possible_intervals
+	if len(meditation.possible_secondary_intervals) > 0:
+		settings_dict["Secondary interval"] = meditation.possible_secondary_intervals
+	
 	settings_dict[""] = ["Back"]
 
 	_activate_menu("", "", settings_dict, meditation)
@@ -80,6 +86,16 @@ func _activate_menu(text_line_1, text_line_2, settings_dict, meditation):
 			var settings_button_text = settings_button.get_node("text")
 			if key == "Duration":
 				settings_button_text.text = _main_scene.to_time_str(option * 60)
+			elif key == "Interval":
+				if option == 0.0:
+					settings_button_text.text = "Off"
+				else:
+					settings_button_text.text = _main_scene.to_time_str(option * 60)
+			elif key == "Secondary interval":
+				if option == 0.0:
+					settings_button_text.text = "Off"
+				else:
+					settings_button_text.text = "On"
 			else:
 				settings_button_text.text = option
 

@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://4pdh5bsnxfio"]
+
+[ext_resource type="Script" path="res://scripts/meditation.gd" id="1_2q5yx"]
+
+[node name="silence" type="Node2D"]
+script = ExtResource("1_2q5yx")
+meditation_sounds = {
+-13.5: "meditation_end",
+0.5: "meditation_begin"
+}
+possible_durations = [2.5, 5.0, 10.0, 15.0]
+possible_intervals = [0.0, 0.5, 1.0, 2.0]
+possible_secondary_intervals = [0.0, 0.3]

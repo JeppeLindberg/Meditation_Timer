@@ -27,5 +27,9 @@ func _process(_delta):
 func _button_pressed():
 	if target_key == "Duration":
 		target_meditation.duration_mins = target_option
+	elif target_key == "Interval":
+		target_meditation.interval_mins = target_option
+	elif target_key == "Secondary interval":
+		target_meditation.secondary_interval_mins = target_option
 	
 	_settings_menu.move_to_meditation_menu()

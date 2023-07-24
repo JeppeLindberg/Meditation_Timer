@@ -21,7 +21,7 @@ patch_margin_bottom = 85
 [node name="text" type="Label" parent="."]
 custom_minimum_size = Vector2(460, 170)
 layout_mode = 0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.145098, 0.12549, 0.129412, 1)
 theme_override_font_sizes/font_size = 70
 text = "BLA"
 horizontal_alignment = 1

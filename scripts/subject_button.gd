@@ -4,6 +4,7 @@ var _scene_paths := preload("res://scripts/library/scene_paths.gd").new()
 
 @export var unpressed_panel_texture: Texture
 @export var pressed_panel_texture: Texture
+@export var meditation_type: String
 
 var _panel: NinePatchRect
 var _other_nodes
@@ -17,7 +18,7 @@ var _prev_button_pressed = false
 
 func start():
 	_panel = get_node("panel")
-	_other_nodes = get_children()
+	_other_nodes = _panel.get_children()
 	for i in range(len(_other_nodes)):
 		if _other_nodes[i] == _panel:
 			_other_nodes.pop_at(i)
@@ -50,4 +51,4 @@ func _process(_delta):
 func _button_pressed():
 	if _main_menu.active:
 		_main_menu.deactivate_menu()
-		_meditation_menu.activate_menu()
+		_meditation_menu.activate_menu(meditation_type)

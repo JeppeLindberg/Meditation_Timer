@@ -2,6 +2,7 @@ extends Node2D
 
 var top_left = Vector2.ZERO
 var bottom_left = Vector2.ZERO
+var main_menu_buttons = Vector2.ZERO
 var center = Vector2.ZERO
 var center_off_top = Vector2.ZERO
 var center_off_bottom = Vector2.ZERO
@@ -20,7 +21,8 @@ func _process(_delta):
 
 	top_left = Vector2(0, 0)
 	bottom_left = Vector2(0, screen_size.y)
-	center = Vector2(screen_size.x * 0.5, screen_size.y * 0.5)
-	center_off_top = Vector2(screen_size.x * 0.5, screen_size.y * 0.25)
+	main_menu_buttons = Vector2(screen_size.x * 0.5, screen_size.y * 0.55)
+	center = Vector2(screen_size.x * 0.5, screen_size.y * 0.45)
+	center_off_top = Vector2(screen_size.x * 0.5, screen_size.y * 0.20)
 	center_off_bottom = Vector2(screen_size.x * 0.5, screen_size.y * 0.80)
 
