@@ -46,6 +46,9 @@ func start():
 	_extra_button = get_node("center/center/container/extra_container/extra_button")
 	_settings_menu = get_node(_scene_paths.SETTINGS_MENU)
 
+func handle_back_request():
+	move_to_main_menu()
+
 func _process(_delta):
 	var secs_since_activation = _main_scene.seconds() - _activated_at
 	var weight = move_curve.sample(secs_since_activation)

@@ -10,10 +10,11 @@ config_version=5
 
 [application]
 
-config/name="Simple Meditation Timer"
+config/name="Meditation Timer"
 run/main_scene="res://scenes/main_scene.tscn"
 config/quit_on_go_back=false
 config/features=PackedStringArray("4.0", "Mobile")
+boot_splash/show_image=false
 config/icon="res://sprites/icon.svg"
 
 [display]

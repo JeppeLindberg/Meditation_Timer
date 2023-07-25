@@ -24,7 +24,7 @@ func _ready():
 	_texture = get_node("texture")
 	_text = get_node("text")
 
-func _process(_delta):		
+func _process(_delta):
 	if _prev_button_pressed == true and button_pressed == false:		
 		if _main_scene.is_hovering(self):
 			_button_pressed()

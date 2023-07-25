@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://dh0dt8b5o2yg1"]
+[gd_scene load_steps=38 format=3 uid="uid://dh0dt8b5o2yg1"]
 
 [ext_resource type="Script" path="res://scripts/main_scene.gd" id="1_5oejp"]
 [ext_resource type="Texture2D" uid="uid://dy7ubts3wma1p" path="res://sprites/shelf.svg" id="1_6atf7"]
@@ -28,6 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://c56xcpm1a8ru0" path="res://sprites/meditation_settings.svg" id="17_3gyys"]
 [ext_resource type="Texture2D" uid="uid://b4m2g52ve87mc" path="res://sprites/meditation_settings_pressed.svg" id="18_c0qx3"]
 [ext_resource type="Texture2D" uid="uid://c5kyokrwsltji" path="res://sprites/icon.svg" id="24_b4yxi"]
+[ext_resource type="Texture2D" uid="uid://ba0wwq66qri1t" path="res://sprites/slide_in.svg" id="24_xqsdd"]
 [ext_resource type="Script" path="res://scripts/user_data.gd" id="27_mt35l"]
 [ext_resource type="Texture2D" uid="uid://do3fho00d6ndy" path="res://sprites/silent_v2.svg" id="28_inoh7"]
 [ext_resource type="Texture2D" uid="uid://c5ei6tt7eyl8w" path="res://sprites/interval.svg" id="29_k4wtc"]
@@ -35,7 +36,15 @@
 [ext_resource type="Script" path="res://scripts/credits_button.gd" id="31_5ay31"]
 
 [sub_resource type="Curve" id="Curve_wefxq"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.318328, 1), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.397993, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_x8iy2"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.622074, 1), 4.62091, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_lwvjb"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.397993, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [node name="main_scene" type="Node2D"]
@@ -52,9 +61,9 @@ move_curve = SubResource("Curve_wefxq")
 blackout_percentage = 0.33
 
 [node name="blackout" type="ColorRect" parent="settings_menu"]
-offset_left = -1255.0
-offset_top = -3925.0
-offset_right = 2130.0
+offset_left = -4804.0
+offset_top = -4852.0
+offset_right = 6734.0
 offset_bottom = 2608.0
 color = Color(0, 0, 0, 0)
 
@@ -65,38 +74,37 @@ offset_right = 1076.0
 offset_bottom = -4.0
 script = ExtResource("3_cfrfu")
 
-[node name="background" type="TextureRect" parent="settings_menu"]
-clip_children = 1
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="background" type="NinePatchRect" parent="settings_menu"]
+modulate = Color(0.968627, 0.956863, 0.960784, 1)
+offset_right = 1080.0
+offset_bottom = 2400.0
 texture = ExtResource("1_6atf7")
+patch_margin_left = 80
+patch_margin_top = 80
+patch_margin_right = 80
+patch_margin_bottom = 80
 
-[node name="color" type="ColorRect" parent="settings_menu/background"]
-layout_mode = 0
-offset_left = -119.0
-offset_top = -40.0
-offset_right = 1222.0
-offset_bottom = 2490.0
-color = Color(0.968627, 0.956863, 0.960784, 1)
+[node name="center" type="CenterContainer" parent="settings_menu"]
+offset_bottom = 180.0
+use_top_left = true
 
-[node name="content_parent" type="VBoxContainer" parent="settings_menu"]
-offset_right = 40.0
-offset_bottom = 330.0
+[node name="content_parent" type="VBoxContainer" parent="settings_menu/center"]
+layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="filler_top" type="Control" parent="settings_menu/content_parent"]
+[node name="filler_top" type="Control" parent="settings_menu/center/content_parent"]
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 
-[node name="content_text" type="VBoxContainer" parent="settings_menu/content_parent"]
+[node name="content_text" type="VBoxContainer" parent="settings_menu/center/content_parent"]
 layout_mode = 2
 theme_override_constants/separation = 30
 
-[node name="content" type="VBoxContainer" parent="settings_menu/content_parent"]
+[node name="content" type="VBoxContainer" parent="settings_menu/center/content_parent"]
 layout_mode = 2
 theme_override_constants/separation = 30
 
-[node name="filler_bottom" type="Control" parent="settings_menu/content_parent"]
+[node name="filler_bottom" type="Control" parent="settings_menu/center/content_parent"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
@@ -109,18 +117,22 @@ half_shade_rpm = 0.25
 full_shade_rpm = 0.2
 
 [node name="blackout" type="ColorRect" parent="meditation_menu"]
-offset_left = -1255.0
-offset_top = -3374.0
-offset_right = 2130.0
-offset_bottom = 2356.0
+offset_left = -3732.0
+offset_top = -3780.0
+offset_right = 4568.0
+offset_bottom = 2940.0
 color = Color(0, 0, 0, 0)
 
-[node name="background" type="TextureRect" parent="meditation_menu"]
+[node name="background" type="NinePatchRect" parent="meditation_menu"]
 self_modulate = Color(0.168627, 0.572549, 0.45098, 1)
 clip_children = 2
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 1080.0
+offset_bottom = 2400.0
 texture = ExtResource("1_6atf7")
+patch_margin_left = 80
+patch_margin_top = 80
+patch_margin_right = 80
+patch_margin_bottom = 80
 
 [node name="half_shade" type="Node2D" parent="meditation_menu/background"]
 position = Vector2(540, 648)
@@ -275,17 +287,155 @@ settings_pressed = ExtResource("18_c0qx3")
 [node name="main_menu" type="Node2D" parent="."]
 script = ExtResource("4_8owsi")
 
-[node name="top" type="Node2D" parent="main_menu"]
+[node name="slide_in_control" type="Control" parent="main_menu"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1080.0
+offset_bottom = 2400.0
 
-[node name="background" type="ColorRect" parent="main_menu/top"]
+[node name="slide_in_black_1" type="Control" parent="main_menu/slide_in_control"]
+z_index = 18
+anchors_preset = 0
+offset_left = 2280.0
+offset_right = 2320.0
+offset_bottom = 40.0
+
+[node name="slide_in" type="TextureRect" parent="main_menu/slide_in_control/slide_in_black_1"]
+modulate = Color(0.145098, 0.12549, 0.129412, 1)
+z_index = 200
+layout_mode = 0
+offset_left = -410.0
+offset_top = -1594.0
+offset_right = 1590.0
+offset_bottom = 406.0
+texture = ExtResource("24_xqsdd")
+
+[node name="slide_in_black_2" type="Control" parent="main_menu/slide_in_control"]
+z_index = 18
+anchors_preset = 0
+offset_left = 2280.0
+offset_right = 2320.0
+offset_bottom = 40.0
+
+[node name="slide_in" type="TextureRect" parent="main_menu/slide_in_control/slide_in_black_2"]
+modulate = Color(0.145098, 0.12549, 0.129412, 1)
+z_index = 200
+layout_mode = 0
+offset_left = -410.0
+offset_top = -1594.0
+offset_right = 1590.0
+offset_bottom = 406.0
+texture = ExtResource("24_xqsdd")
+
+[node name="slide_in_black_3" type="Control" parent="main_menu/slide_in_control"]
+z_index = 18
+anchors_preset = 0
+offset_left = 2280.0
+offset_right = 2320.0
+offset_bottom = 40.0
+
+[node name="slide_in" type="TextureRect" parent="main_menu/slide_in_control/slide_in_black_3"]
+modulate = Color(0.145098, 0.12549, 0.129412, 1)
+z_index = 200
+layout_mode = 0
+offset_left = -410.0
+offset_top = -1594.0
+offset_right = 1590.0
+offset_bottom = 406.0
+texture = ExtResource("24_xqsdd")
+
+[node name="slide_in_black_4" type="Control" parent="main_menu/slide_in_control"]
+z_index = 18
+anchors_preset = 0
+offset_left = 2280.0
+offset_right = 2320.0
+offset_bottom = 40.0
+
+[node name="slide_in" type="TextureRect" parent="main_menu/slide_in_control/slide_in_black_4"]
+modulate = Color(0.145098, 0.12549, 0.129412, 1)
+z_index = 200
+layout_mode = 0
+offset_left = -410.0
+offset_top = -1594.0
+offset_right = 1590.0
+offset_bottom = 406.0
+texture = ExtResource("24_xqsdd")
+
+[node name="slide_in_green_1" type="Control" parent="main_menu/slide_in_control"]
+anchors_preset = 0
+offset_left = 2280.0
+offset_right = 2320.0
+offset_bottom = 40.0
+
+[node name="slide_in" type="TextureRect" parent="main_menu/slide_in_control/slide_in_green_1"]
+modulate = Color(0.105882, 0.517647, 0.329412, 1)
+z_index = 200
+layout_mode = 0
+offset_left = -410.0
+offset_top = -1594.0
+offset_right = 1590.0
+offset_bottom = 406.0
+texture = ExtResource("24_xqsdd")
+
+[node name="slide_in_green_2" type="Control" parent="main_menu/slide_in_control"]
+anchors_preset = 0
+offset_left = 2280.0
+offset_right = 2320.0
+offset_bottom = 40.0
+
+[node name="slide_in" type="TextureRect" parent="main_menu/slide_in_control/slide_in_green_2"]
+modulate = Color(0.105882, 0.517647, 0.329412, 1)
+z_index = 200
+layout_mode = 0
+offset_left = -410.0
+offset_top = -1594.0
+offset_right = 1590.0
+offset_bottom = 406.0
+texture = ExtResource("24_xqsdd")
+
+[node name="slide_in_green_3" type="Control" parent="main_menu/slide_in_control"]
+anchors_preset = 0
+offset_left = 2280.0
+offset_right = 2320.0
+offset_bottom = 40.0
+
+[node name="slide_in" type="TextureRect" parent="main_menu/slide_in_control/slide_in_green_3"]
+modulate = Color(0.105882, 0.517647, 0.329412, 1)
+z_index = 200
+layout_mode = 0
+offset_left = -410.0
+offset_top = -1594.0
+offset_right = 1590.0
+offset_bottom = 406.0
+texture = ExtResource("24_xqsdd")
+
+[node name="slide_in_green_4" type="Control" parent="main_menu/slide_in_control"]
+anchors_preset = 0
+offset_left = 2280.0
+offset_right = 2320.0
+offset_bottom = 40.0
+
+[node name="slide_in" type="TextureRect" parent="main_menu/slide_in_control/slide_in_green_4"]
+modulate = Color(0.105882, 0.517647, 0.329412, 1)
+z_index = 200
+layout_mode = 0
+offset_left = -410.0
+offset_top = -1594.0
+offset_right = 1590.0
+offset_bottom = 406.0
+texture = ExtResource("24_xqsdd")
+
+[node name="background" type="ColorRect" parent="main_menu"]
 offset_right = 1080.0
 offset_bottom = 2400.0
 color = Color(0.968627, 0.956863, 0.960784, 1)
 
+[node name="top" type="Node2D" parent="main_menu"]
+position = Vector2(540, 0)
+
 [node name="center_icons" type="CenterContainer" parent="main_menu/top"]
-offset_left = 540.0
 offset_top = 348.0
-offset_right = 580.0
+offset_right = 40.0
 offset_bottom = 388.0
 use_top_left = true
 
@@ -299,6 +449,13 @@ layout_mode = 2
 [node name="icon" type="TextureRect" parent="main_menu/top/center_icons/container/icon_container"]
 layout_mode = 2
 texture = ExtResource("24_b4yxi")
+
+[node name="slide_in_pivot" type="Control" parent="main_menu/top/center_icons/container/icon_container/icon"]
+anchors_preset = 0
+offset_left = 180.0
+offset_top = 180.0
+offset_right = 220.0
+offset_bottom = 220.0
 
 [node name="space" type="Control" parent="main_menu/top/center_icons/container"]
 custom_minimum_size = Vector2(0, 20)
@@ -315,6 +472,7 @@ vertical_alignment = 1
 
 [node name="center" type="Node2D" parent="main_menu"]
 position = Vector2(540, 1264)
+scale = Vector2(0.9, 0.9)
 
 [node name="center_subjects" type="CenterContainer" parent="main_menu/center"]
 anchors_preset = 8
@@ -466,6 +624,11 @@ layout_mode = 2
 process_priority = -1
 z_index = 1000
 script = ExtResource("12_q4nh6")
+intro_curve = SubResource("Curve_x8iy2")
+move_curve = SubResource("Curve_lwvjb")
+intro_delay = 0.25
+start_delay = 1.5
+move_delay = 0.25
 
 [node name="debug_label" type="Label" parent="screen_size"]
 visible = false

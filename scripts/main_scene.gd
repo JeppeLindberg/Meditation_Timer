@@ -2,6 +2,8 @@ extends Node2D
 
 var _cursor_pos = Vector2.ZERO
 
+var _clickable_node
+
 
 func _ready():
 	_start_node(self)
@@ -18,11 +20,17 @@ func _input(event):
 		event is InputEventScreenTouch:
 		_cursor_pos = event.position
 
+func _notification(what: int) -> void:
+	match what:
+		Node.NOTIFICATION_WM_GO_BACK_REQUEST:
+			_clickable_node.handle_back_request()
+
 func seconds():
 	return float(Time.get_ticks_msec()) / 1000.0
 
 func make_clickable(node):
 	node.move_to_front()
+	_clickable_node = node
 
 func is_hovering(node):
 	if node is Control:

@@ -32,9 +32,12 @@ func start():
 	_main_menu = get_node(_scene_paths.MAIN_MENU)
 	_user_data = get_node(_scene_paths.USER_DATA)
 	_blackout = get_node("blackout")
-	_content_parent = get_node("content_parent")
-	_content = get_node("content_parent/content")
-	_content_text = get_node("content_parent/content_text")
+	_content_parent = get_node("center/content_parent")
+	_content = get_node("center/content_parent/content")
+	_content_text = get_node("center/content_parent/content_text")
+
+func handle_back_request():
+	close_menu()
 
 func activate_credits_menu():
 	var settings_dict = {}
