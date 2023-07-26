@@ -145,6 +145,6 @@ func _process(_delta):
 
 func _process_visual(weight):
 	var pos_1 = _screen_size.bottom_left
-	var pos_2 = _screen_size.bottom_left - Vector2(0, _content_parent.size.y)
+	var pos_2 = _screen_size.bottom_left - Vector2(0, _content_parent.size.y-10)
 	global_position = lerp(pos_1, pos_2, weight)
 	_blackout.color = Color(0, 0, 0, weight * blackout_percentage)
